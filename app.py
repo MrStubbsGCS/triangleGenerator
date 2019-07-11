@@ -35,14 +35,21 @@ csrf = CSRFProtect(app)
 def index():
     form = GenerationForm()
     if form.validate_on_submit():
-        flash(
-            "You submitted name {a_side} via button {a_angle}".format(
-                a_side=form.a_side.data,
-                a_angle=form.a_angle.data
-            )
-        )
-        data=[form.a_angle.data, form.a_side.data, form.b_angle.data, form.b_side.data, form.c_angle.data, form.c_side.data]
-        file = triangleCreator.createTriangle(data)
+        data_nums =[form.a_angle.data, form.a_side.data, form.b_angle.data, form.b_side.data, form.c_angle.data, form.c_side.data]
+        data =[0,0,0,0,0,0]
+        if form.a_angle_var.data == True:
+            data[0] = "A"
+        if form.b_angle_var.data == True:
+            data[2] = "B"
+        if form.c_angle_var.data == True:
+            data[4] = "C"
+        if form.a_side_var.data == True:
+            data[1] = "a"
+        if form.b_side_var.data == True:
+            data[3] = "b"
+        if form.c_side_var.data == True:
+            data[5] = "c"
+        file = triangleCreator.createTriangle(data_nums, data)
         #use annotate() to create labels
         return render_template('triangle.html', user_image=file.name)
     return render_template("index.html", form=form)
