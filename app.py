@@ -2,7 +2,8 @@ from flask import Flask, render_template, flash
 from wtforms import SubmitField, StringField, validators, BooleanField
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
-import os
+import os, math
+import matplotlib.pyplot as plt
 
 
 class GenerationForm(FlaskForm):
@@ -47,3 +48,4 @@ def index():
 
 if __name__ == '__main__':
     app.run()
+
