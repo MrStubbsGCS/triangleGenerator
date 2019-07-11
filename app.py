@@ -43,8 +43,7 @@ def index():
         )
         data=[form.a_angle.data, form.a_side.data, form.b_angle.data, form.b_side.data, form.c_angle.data, form.c_side.data]
         file = triangleCreator.createTriangle(data)
-        #full_filename = os.path.join(app.config['static'], 'triangle.png')
-
+        #use annotate() to create labels
         return render_template('triangle.html', user_image=file.name)
     return render_template("index.html", form=form)
 

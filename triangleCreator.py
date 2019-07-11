@@ -11,6 +11,17 @@ def createTriangle(data):
                            color="black", alpha=0.3, fill=False, edgecolor='black')
     t2 = plt.Polygon([firstPoint(),thirdPoint(float(data[5]))], closed=False,
                            color="black", alpha=0.3, fill=False, edgecolor='black')
+    plt.annotate(data[0], (1, 0.5))
+    plt.annotate(data[1], (1, 0.5))
+    plt.annotate(data[2], (1, 0.5))
+    plt.annotate(data[3], (1, 0.5))
+    plt.annotate(data[4], (1, 0.5))
+    plt.annotate(data[5], (1, 0.5))
+#TODO
+    #fix annotate location and data
+    #if variable then change thta in data
+    #fix angle side combos when drawing
+
     plt.gca().add_patch(t1)
     plt.gca().add_patch(t2)
     plt.gca().relim()
