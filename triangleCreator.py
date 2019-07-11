@@ -1,19 +1,28 @@
 import os, math
 import matplotlib.pyplot as plt
+import random
 
-def createTriangle():
+def createTriangle(data):
     plt.figure()
     plt.autoscale(enable=True)
-    print([firstPoint(), secondPoint(45,12), thirdPoint(14)])
+    print([firstPoint(), secondPoint(float(data[2]),float(data[3])), thirdPoint(float(data[5]))])
 
-    t1 = plt.Polygon([firstPoint(), secondPoint(45,12), thirdPoint(14)], closed=False,
-                           color="blue", alpha=0.3, fill=True, edgecolor=None)
+    t1 = plt.Polygon([firstPoint(), secondPoint(float(data[2]),float(data[3])), thirdPoint(float(data[5]))], closed=False,
+                           color="black", alpha=0.3, fill=False, edgecolor='black')
+    t2 = plt.Polygon([firstPoint(),thirdPoint(float(data[5]))], closed=False,
+                           color="black", alpha=0.3, fill=False, edgecolor='black')
     plt.gca().add_patch(t1)
+    plt.gca().add_patch(t2)
     plt.gca().relim()
     plt.gca().autoscale_view()
+    plt.axis('off')
 # update ax.viewLim using the new dataLim
+    randomint = str(random.randint(0,10000))
+    plt.savefig("static/temp_triangle_"+randomint+".png")
+    file = open("static/temp_triangle_"+randomint+".png")
+    #plt.show()
 
-    plt.show()
+    return file
 
 def firstPoint():
     return (0,0)
@@ -28,4 +37,3 @@ def thirdPoint(length):
     y = 0
     return (x,y)
 
-createTriangle()

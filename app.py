@@ -2,8 +2,8 @@ from flask import Flask, render_template, flash
 from wtforms import SubmitField, StringField, validators, BooleanField
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
-import os, math
-import matplotlib.pyplot as plt
+import os
+import triangleCreator
 
 
 class GenerationForm(FlaskForm):
@@ -41,8 +41,11 @@ def index():
                 a_angle=form.a_angle.data
             )
         )
+        data=[form.a_angle.data, form.a_side.data, form.b_angle.data, form.b_side.data, form.c_angle.data, form.c_side.data]
+        file = triangleCreator.createTriangle(data)
+        #full_filename = os.path.join(app.config['static'], 'triangle.png')
 
-        return render_template('index.html', form=form)
+        return render_template('triangle.html', user_image=file.name)
     return render_template("index.html", form=form)
 
 
